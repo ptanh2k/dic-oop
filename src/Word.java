@@ -4,8 +4,8 @@ public class Word {
 
     //Constructor.
     public Word(String word_target, String word_explain) {
-        this.word_target = word_target.trim().toLowerCase();
-        this.word_explain = word_explain.trim().toLowerCase();
+        this.word_target = word_target;
+        this.word_explain = word_explain;
     }
 
     public void setWord_target(String word_target) {
