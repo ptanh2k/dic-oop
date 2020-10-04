@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class DictionaryCommandline {
     protected DictionaryManagement manage = new DictionaryManagement();
 
@@ -11,8 +13,9 @@ public class DictionaryCommandline {
         }
     }
 
-    public void dictionaryBasic() {
+    public void dictionaryBasic() throws IOException {
         manage.insertFromCommandline();
         showAllWords();
+        manage.readFile();
     }
 }
