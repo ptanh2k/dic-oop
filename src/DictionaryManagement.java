@@ -75,5 +75,34 @@ public class DictionaryManagement {
         String result = dict.lookup(word_target);
         System.out.println(result);
     }
+
+    /**
+     * Add word to dictionary.
+     */
+    public void addWord() {
+        Scanner sc = new Scanner(System.in);
+        String word_target = sc.nextLine();
+        String word_explain = sc.nextLine();
+        Word word = new Word(word_target, word_explain);
+        if (dict.getDict().indexOf(word) == -1) {
+            dict.getDict().add(word);
+        }
+    }
+
+    /**
+     * Remove word from dictionary.
+     */
+    public void removeWord() {
+        Scanner sc = new Scanner(System.in);
+        String removed_target = sc.nextLine();
+
+    }
+
+    /**
+     * Edit word in dictionary.
+     */
+    public void editWord() {
+
+    }
 }
 
