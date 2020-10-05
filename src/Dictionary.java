@@ -7,6 +7,22 @@ public class Dictionary {
         //TODO
     }
 
+    private Word linearLookup(String word_target) {
+        int length = dict.size();
+        for (int i = 0; i < length; i++) {
+            if (word_target.equals(dict.get(i).getWord_target())) {
+                return dict.get(i);
+            }
+        }
+        return null;
+    }
+
+    public String lookup(String word_target) {
+        Word word = linearLookup(word_target);
+        assert word != null;
+        return word.getWord_explain();
+    }
+
     public Dictionary(ArrayList<Word> dict) {
         this.dict = dict;
     }

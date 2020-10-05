@@ -1,9 +1,6 @@
-import java.nio.charset.StandardCharsets;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.File;
-import java.io.IOException;
-
 
 public class DictionaryManagement {
     public DictionaryManagement() {
@@ -43,15 +40,13 @@ public class DictionaryManagement {
         File file = new File("./data/dictionaries.txt");
         String[] split;
         ArrayList<Word> words = new ArrayList<>();
-        try (Scanner sc = new Scanner(file, StandardCharsets.UTF_8)) {
+        try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 String cur_line = sc.nextLine();
-                split = cur_line.split("\t");
-                if (split.length >= 2) {
+                split = cur_line.split("\\t");
+                if (split.length == 2) {
                     Word word = new Word(split[0], split[1]);
-                    words.add(word);
-                    System.out.println(split[0]);
-                    System.out.println(split[1]);
+                    dict.getDict().add(word);
                 }
             }
         }
@@ -77,6 +72,8 @@ public class DictionaryManagement {
     public void dictionaryLookup() {
         Scanner sc = new Scanner(System.in);
         String word_target = sc.nextLine();
+        String result = dict.lookup(word_target);
+        System.out.println(result);
     }
 }
 
