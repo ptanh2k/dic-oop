@@ -1,4 +1,4 @@
-Hello   Xin chao
-Love    Yeu
-Life    Cuoc doi
-Music   Am nhac
+Hello	xin chao
+Bride	Co dau
+Spider	Con nhen
+Heart	Trai tim
