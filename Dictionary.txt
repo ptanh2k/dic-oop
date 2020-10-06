@@ -1,0 +1,2 @@
+0|dog|con cho
+1|cat|con meo
