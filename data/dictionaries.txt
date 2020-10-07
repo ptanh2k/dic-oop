@@ -1,4 +1,3 @@
-Hello	xin chao
-Bride	Co dau
-Spider	Con nhen
-Heart	Trai tim
+0	Hello	Xin chao
+2	Superman	Sieu nhan
+0	Hi	Xin chao
