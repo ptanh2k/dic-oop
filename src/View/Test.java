@@ -49,20 +49,11 @@ public class Test {
                     manager.editWord(fileName);
                     break;
                 case 5:
-                    showDictionary(dict);
+                    manager.showDictionary();
                     break;
             }
         } while (choice != 0);
     }
 
-    /**
-     * Display dictionary.
-     */
-    public static void showDictionary(ArrayList<Word> dict) {
-        System.out.println("_____ TU DIEN ____");
-        for (Word word : dict){
-            System.out.println(word);
-        }
-    }
 }
 

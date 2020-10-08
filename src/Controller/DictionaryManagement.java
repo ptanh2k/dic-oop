@@ -23,12 +23,14 @@ public class DictionaryManagement {
         System.out.print("Nhập số từ muốn thêm: ");
         int num = sc.nextInt();
         for (int i = 0; i < num; i++) {
+            sc.nextLine();
             System.out.print("Từ cần dịch:  ");
             String word_target = sc.nextLine();
             sc.nextLine();
             System.out.print("Nghĩa của từ: ");
             String word_explain = sc.nextLine();
             Word word = new Word(word_target, word_explain);
+            dict.getDict().add(word);
         }
         this.dictionaryExportToFile(filename);
     }
@@ -38,7 +40,7 @@ public class DictionaryManagement {
      * @return data from file
      */
     public ArrayList<Word> readFile() throws IOException {
-        File file = new File("./data/dictionaries.txt");
+        File file = new File("./data/dictionaries.txt", "UTF8");
         String[] split;
         ArrayList<Word> words = new ArrayList<>();
         try (Scanner sc = new Scanner(file)) {
@@ -88,6 +90,7 @@ public class DictionaryManagement {
      */
     public void dictionaryLookup() {
         Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap tu can tim: ");
         String word_target = sc.nextLine();
         String result = dict.lookup(word_target);
         System.out.println(result);
@@ -106,7 +109,7 @@ public class DictionaryManagement {
         if (!dict.getDict().contains(word)) {
             dict.getDict().add(word);
         } else {
-            System.out.print("Word not found");
+            System.out.print("Duplicate!");
         }
         this.dictionaryExportToFile(filename);
     }
@@ -116,6 +119,7 @@ public class DictionaryManagement {
      */
     public void removeWord(String filename) throws IOException {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap tu can xoa: ");
         String removed_target = sc.nextLine();
         int index = getIndexByWord(removed_target);
         if (index != -1) {
@@ -131,9 +135,10 @@ public class DictionaryManagement {
      */
     public void editWord(String filename) throws IOException {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Nhap tu can sua: ");
         String edited_word = sc.nextLine();
         int index = getIndexByWord(edited_word);
-        if (index == -1) {
+        if (index != -1) {
             String new_target = sc.nextLine();
             String new_explain = sc.nextLine();
             dict.getDict().get(index).setWord_target(new_target);
@@ -153,6 +158,16 @@ public class DictionaryManagement {
             writer.write(String.format("%s\t%s \n", word.getWord_target(), word.getWord_explain()));
         }
         writer.close();
+    }
+
+    /**
+     * Display dictionary.
+     */
+    public void showDictionary() {
+        System.out.println("_____ TU DIEN ____");
+        for (Word word : dict.getDict()) {
+            System.out.format("%s\t%s \n", word.getWord_target(), word.getWord_explain());
+        }
     }
 }
 
