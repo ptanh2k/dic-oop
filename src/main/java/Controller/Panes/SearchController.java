@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class SearchPane {
+public class SearchController {
     @FXML
     public Button SearchButton;
 
@@ -22,16 +22,15 @@ public class SearchPane {
 
     @FXML
     private Button searchBtn;
+
     @FXML
     private ListView<String> Suggest;
 
     @FXML
     public void handleSearch(ActionEvent event) throws IOException {
         DictionaryManagement manager = new DictionaryManagement();
-
         String word_target = WordTarget.getText().trim();
-
-        manager.insertFromFile();
+        WordExplain.setText(word_target);
 
 
 

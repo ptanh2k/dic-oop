@@ -16,7 +16,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="378.0" prefWidth="395.0">
                      <children>
                         <TextField layoutY="1.0" opacity="0.57" prefHeight="47.0" prefWidth="159.0" promptText="Word to search..." />
-                        <Button layoutX="168.0" layoutY="12.0" mnemonicParsing="false" onAction="#Search" text="Search" />
+                        <Button layoutX="168.0" layoutY="12.0" mnemonicParsing="false" text="Search" />
                      </children>
                   </AnchorPane>
                   <SplitPane orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">

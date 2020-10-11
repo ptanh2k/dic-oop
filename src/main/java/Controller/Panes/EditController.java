@@ -1,6 +1,6 @@
 package Controller.Panes;
 
 
-public class EditPane {
+public class EditController {
 
 }
