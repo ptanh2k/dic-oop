@@ -1,3 +1,44 @@
-Hello	Xin chao 
-Superman	Sieu nahn 
-Catwoman	Mieu nu 
+A	a
+B	b
+C	c
+A	a
+B	b
+C	c
+D	d
+E	e
+F	f
+G	g
+H	h
+A	a
+B	b
+C	c
+A	a
+B	b
+C	c
+D	d
+E	e
+F	f
+G	g
+H	h
+A	a
+B	b
+C	c
+A	a
+B	b
+C	c
+D	d
+E	e
+F	f
+G	g
+H	h
+A	a
+B	b
+C	c
+A	a
+B	b
+C	c
+D	d
+	ee
+F	f
+G	g
+H	h

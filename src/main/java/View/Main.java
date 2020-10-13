@@ -1,5 +1,6 @@
 package View;
 
+import Controller.DictionaryManagement;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,9 +17,12 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/Main.fxml"));
+        DictionaryManagement.insertFromFile();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainUI.fxml"));
         primaryStage.setTitle("Dictionary");
-        primaryStage.setScene(new Scene(root, 500, 490));
+        primaryStage.setScene(new Scene(root, 640, 490));
         primaryStage.show();
+        DictionaryManagement.insertFromFile();
     }
+
 }

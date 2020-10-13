@@ -1,7 +1,7 @@
 package Controller;
 
 public class DictionaryCommandline {
-    protected DictionaryManagement manager = new DictionaryManagement();
+    public static DictionaryManagement manager = new DictionaryManagement();
 
     /**
      * Display all words and theirs translation (cmd version)

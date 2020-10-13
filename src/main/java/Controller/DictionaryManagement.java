@@ -8,45 +8,47 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DictionaryManagement {
+    private static Scanner sc = new Scanner(System.in);
+
     public DictionaryManagement() {
         //TODO
     }
 
-    protected Dictionary dict = new Dictionary();
+    protected static Dictionary dict = new Dictionary();
+
+    private static final String fileName = "./data/dictionaries.txt";
 
     /**
      * Insert number of word to translate.
      * Insert words and theirs translation.
      */
-    public void insertFromCommandline(String filename) throws IOException {
-        Scanner sc = new Scanner(System.in);
+    public static void insertFromCommandline(String fileName) throws IOException {
+        insertFromFile();
         System.out.print("Nhập số từ muốn thêm: ");
         int num = sc.nextInt();
+        sc.nextLine();
         for (int i = 0; i < num; i++) {
-            sc.nextLine();
             System.out.print("Từ cần dịch:  ");
             String word_target = sc.nextLine();
-            sc.nextLine();
             System.out.print("Nghĩa của từ: ");
             String word_explain = sc.nextLine();
             Word word = new Word(word_target, word_explain);
             dict.getDict().add(word);
         }
-        this.dictionaryExportToFile(filename);
     }
 
     /**
      * Read data from file.
      * @return data from file
      */
-    public ArrayList<Word> readFile() throws IOException {
-        File file = new File("./data/dictionaries.txt", "UTF8");
+    public static ArrayList<Word> readFile() throws IOException {
+        File file = new File("./data/dictionaries.txt");
         String[] split;
         ArrayList<Word> words = new ArrayList<>();
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
                 String cur_line = sc.nextLine();
-                split = cur_line.split("\\t");
+                split = cur_line.split("\t");
                 if (split.length == 2) {
                     Word word = new Word(split[0], split[1]);
                     dict.getDict().add(word);
@@ -62,7 +64,7 @@ public class DictionaryManagement {
     /**
      * Load dictionary from file.
      */
-    public void insertFromFile() throws IOException {
+    public static void insertFromFile() throws IOException {
         ArrayList<Word> new_words = readFile();
         for (Word new_word : new_words) {
             dict.getDict().add(new_word);
@@ -74,7 +76,7 @@ public class DictionaryManagement {
      * @param word_target string
      * @return index
      */
-    public int getIndexByWord(String word_target) {
+    public static int getIndexByWord(String word_target) {
         int index = -1;
         int length = dict.getDict().size();
         for (int i = 0; i < length; i++) {
@@ -86,39 +88,49 @@ public class DictionaryManagement {
     }
 
     /**
+     * Look up using linear search.
+     */
+    private static Word linearLookup(String word_target) {
+        int length = dict.getDict().size();
+        for (int i = 0; i < length; i++) {
+            if (word_target.equals(dict.getDict().get(i).getWord_target())) {
+                return dict.getDict().get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Look up word.
+     */
+    public static String lookup(String word_target) {
+        Word word = linearLookup(word_target);
+        return word.getWord_explain();
+    }
+
+    /**
      * Look for word.
      */
-    public void dictionaryLookup() {
-        Scanner sc = new Scanner(System.in);
+    public static void dictionaryLookup() {
         System.out.print("Nhap tu can tim: ");
         String word_target = sc.nextLine();
-        String result = dict.lookup(word_target);
+        String result = lookup(word_target);
         System.out.println(result);
     }
 
     /**
      * Add word to dictionary.
      */
-    public void addWord(String filename) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Them tu can giai nghia: ");
-        String word_target = sc.nextLine();
-        System.out.print("Them nghia cua tu: ");
-        String word_explain = sc.nextLine();
+    public static void addWord(String word_target, String word_explain) throws IOException {
         Word word = new Word(word_target, word_explain);
-        if (!dict.getDict().contains(word)) {
-            dict.getDict().add(word);
-        } else {
-            System.out.print("Duplicate!");
-        }
-        this.dictionaryExportToFile(filename);
+        dict.getDict().add(word);
+        dictionaryExportToFile(dict);
     }
 
     /**
      * Remove word from dictionary.
      */
-    public void removeWord(String filename) throws IOException {
-        Scanner sc = new Scanner(System.in);
+    public static void removeWord() throws IOException {
         System.out.println("Nhap tu can xoa: ");
         String removed_target = sc.nextLine();
         int index = getIndexByWord(removed_target);
@@ -127,14 +139,13 @@ public class DictionaryManagement {
         } else {
             System.out.print("Word not found");
         }
-        this.dictionaryExportToFile(filename);
+        dictionaryExportToFile(dict);
     }
 
     /**
      * Edit word in dictionary.
      */
-    public void editWord(String filename) throws IOException {
-        Scanner sc = new Scanner(System.in);
+    public static void editWord() throws IOException {
         System.out.println("Nhap tu can sua: ");
         String edited_word = sc.nextLine();
         int index = getIndexByWord(edited_word);
@@ -146,24 +157,56 @@ public class DictionaryManagement {
         } else {
             System.out.print("Word not found");
         }
-        this.dictionaryExportToFile(filename);
+        dictionaryExportToFile(dict);
+    }
+
+    public static ArrayList<String> dictionarySearcher(ArrayList<Word> list, String key){
+        ArrayList<String> result = new ArrayList<>();
+        String pattern = ".*" + key.toLowerCase() + ".*";
+        for (int i = 0; i < list.size(); i++) {
+            Word word = list.get(i);
+            if(word.getWord_target().toLowerCase().matches(pattern)) {
+                result.add(word.getWord_target());
+            }
+        }
+        return result;
+    }
+
+    public static void dictionaryExportToFile(Dictionary dictionary) {
+        try {
+            File fileName = new File("./data/dictionaries.txt");
+            OutputStream outputStream = new FileOutputStream(fileName);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+
+            for (Word word : dictionary.getDict()) {
+                outputStreamWriter.write(word.getWord_target());
+                outputStreamWriter.write("\t");
+                outputStreamWriter.write(word.getWord_explain());
+                outputStreamWriter.write("\n");
+            }
+            outputStreamWriter.flush();
+            outputStream.close();
+            outputStreamWriter.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
      * Export data to file.
      */
-    public void dictionaryExportToFile(String filename) throws IOException {
-        FileWriter writer = new FileWriter(filename);
-        for (Word word : dict.getDict()) {
-            writer.write(String.format("%s\t%s \n", word.getWord_target(), word.getWord_explain()));
-        }
-        writer.close();
-    }
+//    public static void dictionaryExportToFile(String fileName) throws IOException {
+//        FileWriter writer = new FileWriter(fileName);
+//        for (Word word : dict.getDict()) {
+//            writer.write(String.format("%s\t%s \n", word.getWord_target(), word.getWord_explain()));
+//        }
+//        writer.close();
+//    }
 
     /**
      * Display dictionary.
      */
-    public void showDictionary() {
+    public static void showDictionary() {
         System.out.println("_____ TU DIEN ____");
         for (Word word : dict.getDict()) {
             System.out.format("%s\t%s \n", word.getWord_target(), word.getWord_explain());
