@@ -4,6 +4,7 @@ import Model.Dictionary;
 import Model.Word;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,40 +40,35 @@ public class DictionaryManagement {
 
     /**
      * Read data from file.
+     *
      * @return data from file
      */
-    public static ArrayList<Word> readFile() throws IOException {
+    public static void insertFromFile() throws IOException {
         File file = new File("./data/dictionaries.txt");
-        String[] split;
-        ArrayList<Word> words = new ArrayList<>();
-        try (Scanner sc = new Scanner(file)) {
-            while (sc.hasNextLine()) {
-                String cur_line = sc.nextLine();
-                split = cur_line.split("\t");
-                if (split.length == 2) {
-                    Word word = new Word(split[0], split[1]);
-                    dict.getDict().add(word);
-                }
+        Scanner sc = new Scanner(file);
+        while (sc.hasNextLine()) {
+            String cur_line = sc.nextLine();
+            String[] split = cur_line.split("\\t");
+            if (split.length == 2) {
+                Word word = new Word(split[0], split[1]);
+                dict.getDict().add(word);
             }
         }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return words;
     }
 
     /**
      * Load dictionary from file.
      */
-    public static void insertFromFile() throws IOException {
-        ArrayList<Word> new_words = readFile();
-        for (Word new_word : new_words) {
-            dict.getDict().add(new_word);
-        }
-    }
+//    public static void insertFromFile() throws IOException {
+//        ArrayList<Word> new_words = readFile();
+//        for (Word new_word : new_words) {
+//            dict.getDict().add(new_word);
+//        }
+//    }
 
     /**
      * Return index of word.
+     *
      * @param word_target string
      * @return index
      */
@@ -124,7 +120,7 @@ public class DictionaryManagement {
     public static void addWord(String word_target, String word_explain) throws IOException {
         Word word = new Word(word_target, word_explain);
         dict.getDict().add(word);
-        dictionaryExportToFile(dict);
+        dictionaryExportToFile();
     }
 
     /**
@@ -139,14 +135,14 @@ public class DictionaryManagement {
         } else {
             System.out.print("Word not found");
         }
-        dictionaryExportToFile(dict);
+        dictionaryExportToFile();
     }
 
     /**
      * Edit word in dictionary.
      */
     public static void editWord() throws IOException {
-        System.out.println("Nhap tu can sua: ");
+        Scanner sc = new Scanner(System.in);
         String edited_word = sc.nextLine();
         int index = getIndexByWord(edited_word);
         if (index != -1) {
@@ -157,51 +153,46 @@ public class DictionaryManagement {
         } else {
             System.out.print("Word not found");
         }
-        dictionaryExportToFile(dict);
+        dictionaryExportToFile();
     }
 
-    public static ArrayList<String> dictionarySearcher(ArrayList<Word> list, String key){
-        ArrayList<String> result = new ArrayList<>();
-        String pattern = ".*" + key.toLowerCase() + ".*";
-        for (int i = 0; i < list.size(); i++) {
-            Word word = list.get(i);
-            if(word.getWord_target().toLowerCase().matches(pattern)) {
-                result.add(word.getWord_target());
+//    public static ArrayList<String> dictionarySearcher(ArrayList<Word> list, String key){
+//        ArrayList<String> result = new ArrayList<>();
+//        String pattern = ".*" + key.toLowerCase() + ".*";
+//        for (int i = 0; i < list.size(); i++) {
+//            Word word = list.get(i);
+//            if (word.getWord_target().toLowerCase().matches(pattern)) {
+//                result.add(word.getWord_target());
+//            }
+//        }
+//        return result;
+//    }
+
+    /**
+     * Show suggestion.
+     */
+    public static ArrayList<String> dictionarySearcher(String key) throws IOException {
+        ArrayList<String> result = new ArrayList<String>();
+
+        for (int i = 0; i < dict.getDict().size(); i++) {
+            if (dict.getDict().get(i).getWord_target().indexOf(key) == 0) {
+                result.add(dict.getDict().get(i).getWord_target());
             }
         }
         return result;
     }
 
-    public static void dictionaryExportToFile(Dictionary dictionary) {
-        try {
-            File fileName = new File("./data/dictionaries.txt");
-            OutputStream outputStream = new FileOutputStream(fileName);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-
-            for (Word word : dictionary.getDict()) {
-                outputStreamWriter.write(word.getWord_target());
-                outputStreamWriter.write("\t");
-                outputStreamWriter.write(word.getWord_explain());
-                outputStreamWriter.write("\n");
-            }
-            outputStreamWriter.flush();
-            outputStream.close();
-            outputStreamWriter.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
     /**
      * Export data to file.
      */
-//    public static void dictionaryExportToFile(String fileName) throws IOException {
-//        FileWriter writer = new FileWriter(fileName);
-//        for (Word word : dict.getDict()) {
-//            writer.write(String.format("%s\t%s \n", word.getWord_target(), word.getWord_explain()));
-//        }
-//        writer.close();
-//    }
+    public static void dictionaryExportToFile() throws IOException {
+        FileWriter writer = new FileWriter("data/dictionaries.txt");
+        for (Word word : dict.getDict()) {
+            writer.write(String.format("%s\t%s\n", word.getWord_target(), word.getWord_explain()));
+        }
+        writer.close();
+        System.out.println(dict.getDict());
+    }
 
     /**
      * Display dictionary.

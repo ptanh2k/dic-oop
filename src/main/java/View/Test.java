@@ -2,6 +2,7 @@ package View;
 
 import Controller.DictionaryCommandline;
 import Controller.DictionaryManagement;
+import Model.Dictionary;
 import Model.Word;
 
 import java.io.IOException;
@@ -11,19 +12,16 @@ import java.util.Scanner;
 public class Test {
 
     public static void main(String[] args) throws IOException {
-        DictionaryCommandline commandline = new DictionaryCommandline();
-
         int choice = 0;
         String fileName = "./data/dictionaries.txt";
-        ArrayList<Word> dict = new ArrayList<>();
-        String key = null;
+
+        Dictionary dict = new Dictionary();
 
         DictionaryManagement.insertFromCommandline(fileName);
 
         Scanner scanner = new Scanner(System.in);
 
         do {
-            DictionaryManagement.insertFromFile();
             System.out.println("____MENU____");
             System.out.println("1. Thêm từ ");
             System.out.println("2. Tìm từ ");
@@ -59,7 +57,11 @@ public class Test {
                     DictionaryManagement.showDictionary();
                     break;
                 case 6:
-                    DictionaryManagement.dictionarySearcher(dict, key);
+                    String key = scanner.nextLine();
+                    ArrayList<String> result = DictionaryManagement.dictionarySearcher(key);
+                    for (int i = 0; i < result.size(); i++) {
+                        System.out.println(result.get(i));
+                    }
                     break;
             }
         } while (choice != 0);

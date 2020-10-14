@@ -2,6 +2,7 @@ package Controller.Panes;
 
 import Controller.DictionaryManagement;
 import Model.Dictionary;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,33 +10,34 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.event.ActionEvent;
+import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AddController {
-    Dictionary dict = new Dictionary();
+public class RemoveController {
+    @FXML
+    private Button removeBtn;
 
     @FXML
-    public Button addBtn;
+    private TextField wordToRemove;
 
     @FXML
-    private TextField wordToAdd;
+    private Tooltip tooltip = new Tooltip("Word not found");
 
     @FXML
-    private TextField wordAddedExplain;
+    public void removeWord(ActionEvent event) throws IOException {
+        Dictionary dict = new Dictionary();
 
-    @FXML
-    public void addWord(ActionEvent event) {
-        try {
-            String word_to_added = wordToAdd.getText().trim();
-            String word_added_explain = wordAddedExplain.getText().trim();
-            DictionaryManagement.addWord(word_to_added, word_added_explain);
-//            DictionaryManagement.dictionaryExportToFile();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        String removed = wordToRemove.getText().trim();
+        int index = DictionaryManagement.getIndexByWord(removed);
+
+        if (index != -1) {
+            dict.getDict().remove(index);
+        } else {
+            wordToRemove.setTooltip(tooltip);
         }
+        DictionaryManagement.dictionaryExportToFile();
     }
 
     @FXML
@@ -47,8 +49,12 @@ public class AddController {
             Parent mainGUI = loader.load();
             Scene scene = new Scene(mainGUI);
             stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
+
+
+
 }

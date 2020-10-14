@@ -22,7 +22,5 @@ public class Main extends Application {
         primaryStage.setTitle("Dictionary");
         primaryStage.setScene(new Scene(root, 640, 490));
         primaryStage.show();
-        DictionaryManagement.insertFromFile();
     }
-
 }
