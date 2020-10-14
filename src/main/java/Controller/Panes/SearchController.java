@@ -95,6 +95,7 @@ public class SearchController {
         String target = WordTarget.getText().trim();
 
 
+
     }
 
     @FXML
