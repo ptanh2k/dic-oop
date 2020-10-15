@@ -1,6 +1,5 @@
 package Controller.Panes;
 
-import Controller.DictionaryCommandline;
 import Controller.DictionaryManagement;
 import Model.Dictionary;
 import javafx.event.ActionEvent;
@@ -20,9 +19,6 @@ public class EditController {
     Dictionary dict = new Dictionary();
 
     @FXML
-    private Button editBtn;
-
-    @FXML
     private TextField wordToEdit;
 
     @FXML
@@ -31,15 +27,19 @@ public class EditController {
     @FXML
     private TextField explain;
 
+    public EditController(TextField wordToEdit) {
+        this.wordToEdit = wordToEdit;
+    }
+
     @FXML
-    public void editWord(ActionEvent event) throws IOException {
+    public void editWord() throws IOException {
         String to_edit = wordToEdit.getText().trim();
 
         if (DictionaryManagement.getIndexByWord(to_edit) != -1) {
             String edit_to = wordEdited.getText().trim();
             String new_explain = explain.getText().trim();
-            dict.getDict().get(DictionaryManagement.getIndexByWord(to_edit)).setWord_target(edit_to);
-            dict.getDict().get(DictionaryManagement.getIndexByWord(to_edit)).setWord_explain(new_explain);
+            Dictionary.dict.get(DictionaryManagement.getIndexByWord(to_edit)).setWord_target(edit_to);
+            Dictionary.dict.get(DictionaryManagement.getIndexByWord(to_edit)).setWord_explain(new_explain);
             DictionaryManagement.dictionaryExportToFile();
         } else {
             explain.setText("Word not found");

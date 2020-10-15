@@ -1,9 +1,7 @@
 package View;
 
-import Controller.DictionaryCommandline;
 import Controller.DictionaryManagement;
 import Model.Dictionary;
-import Model.Word;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,11 +11,10 @@ public class Test {
 
     public static void main(String[] args) throws IOException {
         int choice = 0;
-        String fileName = "./data/dictionaries.txt";
 
         Dictionary dict = new Dictionary();
 
-        DictionaryManagement.insertFromCommandline(fileName);
+        DictionaryManagement.insertFromCommandline();
 
         Scanner scanner = new Scanner(System.in);
 

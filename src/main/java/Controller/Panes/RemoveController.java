@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
@@ -16,8 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class RemoveController {
-    @FXML
-    private Button removeBtn;
 
     @FXML
     private TextField wordToRemove;
@@ -26,14 +23,14 @@ public class RemoveController {
     private Tooltip tooltip = new Tooltip("Word not found");
 
     @FXML
-    public void removeWord(ActionEvent event) throws IOException {
+    public void removeWord() throws IOException {
         Dictionary dict = new Dictionary();
 
         String removed = wordToRemove.getText().trim();
         int index = DictionaryManagement.getIndexByWord(removed);
 
         if (index != -1) {
-            dict.getDict().remove(index);
+            Dictionary.dict.remove(index);
         } else {
             wordToRemove.setTooltip(tooltip);
         }

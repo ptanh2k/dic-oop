@@ -27,7 +27,7 @@ public class AddController {
     private TextField wordAddedExplain;
 
     @FXML
-    public void addWord(ActionEvent event) {
+    public void addWord() {
         try {
             String word_to_added = wordToAdd.getText().trim();
             String word_added_explain = wordAddedExplain.getText().trim();

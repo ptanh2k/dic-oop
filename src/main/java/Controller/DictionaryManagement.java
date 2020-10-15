@@ -4,7 +4,6 @@ import Model.Dictionary;
 import Model.Word;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,15 +14,11 @@ public class DictionaryManagement {
         //TODO
     }
 
-    protected static Dictionary dict = new Dictionary();
-
-    private static final String fileName = "./data/dictionaries.txt";
-
     /**
      * Insert number of word to translate.
      * Insert words and theirs translation.
      */
-    public static void insertFromCommandline(String fileName) throws IOException {
+    public static void insertFromCommandline() throws IOException {
         insertFromFile();
         System.out.print("Nhập số từ muốn thêm: ");
         int num = sc.nextInt();
@@ -34,14 +29,12 @@ public class DictionaryManagement {
             System.out.print("Nghĩa của từ: ");
             String word_explain = sc.nextLine();
             Word word = new Word(word_target, word_explain);
-            dict.getDict().add(word);
+            Dictionary.dict.add(word);
         }
     }
 
     /**
-     * Read data from file.
-     *
-     * @return data from file
+     * Load data from file.
      */
     public static void insertFromFile() throws IOException {
         File file = new File("./data/dictionaries.txt");
@@ -51,14 +44,12 @@ public class DictionaryManagement {
             String[] split = cur_line.split("\\t");
             if (split.length == 2) {
                 Word word = new Word(split[0], split[1]);
-                dict.getDict().add(word);
+                Dictionary.dict.add(word);
             }
         }
     }
 
-    /**
-     * Load dictionary from file.
-     */
+
 //    public static void insertFromFile() throws IOException {
 //        ArrayList<Word> new_words = readFile();
 //        for (Word new_word : new_words) {
@@ -74,9 +65,9 @@ public class DictionaryManagement {
      */
     public static int getIndexByWord(String word_target) {
         int index = -1;
-        int length = dict.getDict().size();
+        int length = Dictionary.dict.size();
         for (int i = 0; i < length; i++) {
-            if (word_target.equals(dict.getDict().get(i).getWord_target())) {
+            if (word_target.equals(Dictionary.dict.get(i).getWord_target())) {
                 index = i;
             }
         }
@@ -87,10 +78,10 @@ public class DictionaryManagement {
      * Look up using linear search.
      */
     private static Word linearLookup(String word_target) {
-        int length = dict.getDict().size();
+        int length = Dictionary.dict.size();
         for (int i = 0; i < length; i++) {
-            if (word_target.equals(dict.getDict().get(i).getWord_target())) {
-                return dict.getDict().get(i);
+            if (word_target.equals(Dictionary.dict.get(i).getWord_target())) {
+                return Dictionary.dict.get(i);
             }
         }
         return null;
@@ -119,7 +110,7 @@ public class DictionaryManagement {
      */
     public static void addWord(String word_target, String word_explain) throws IOException {
         Word word = new Word(word_target, word_explain);
-        dict.getDict().add(word);
+        Dictionary.dict.add(word);
         dictionaryExportToFile();
     }
 
@@ -131,7 +122,7 @@ public class DictionaryManagement {
         String removed_target = sc.nextLine();
         int index = getIndexByWord(removed_target);
         if (index != -1) {
-            dict.getDict().remove(index);
+            Dictionary.dict.remove(index);
         } else {
             System.out.print("Word not found");
         }
@@ -148,8 +139,8 @@ public class DictionaryManagement {
         if (index != -1) {
             String new_target = sc.nextLine();
             String new_explain = sc.nextLine();
-            dict.getDict().get(index).setWord_target(new_target);
-            dict.getDict().get(index).setWord_explain(new_explain);
+            Dictionary.dict.get(index).setWord_target(new_target);
+            Dictionary.dict.get(index).setWord_explain(new_explain);
         } else {
             System.out.print("Word not found");
         }
@@ -174,9 +165,9 @@ public class DictionaryManagement {
     public static ArrayList<String> dictionarySearcher(String key) throws IOException {
         ArrayList<String> result = new ArrayList<String>();
 
-        for (int i = 0; i < dict.getDict().size(); i++) {
-            if (dict.getDict().get(i).getWord_target().indexOf(key) == 0) {
-                result.add(dict.getDict().get(i).getWord_target());
+        for (int i = 0; i < Dictionary.dict.size(); i++) {
+            if (Dictionary.dict.get(i).getWord_target().indexOf(key) == 0) {
+                result.add(Dictionary.dict.get(i).getWord_target());
             }
         }
         return result;
@@ -187,11 +178,11 @@ public class DictionaryManagement {
      */
     public static void dictionaryExportToFile() throws IOException {
         FileWriter writer = new FileWriter("data/dictionaries.txt");
-        for (Word word : dict.getDict()) {
+        for (Word word : Dictionary.dict) {
             writer.write(String.format("%s\t%s\n", word.getWord_target(), word.getWord_explain()));
         }
         writer.close();
-        System.out.println(dict.getDict());
+        System.out.println(Dictionary.dict);
     }
 
     /**
@@ -199,7 +190,7 @@ public class DictionaryManagement {
      */
     public static void showDictionary() {
         System.out.println("_____ TU DIEN ____");
-        for (Word word : dict.getDict()) {
+        for (Word word : Dictionary.dict) {
             System.out.format("%s\t%s \n", word.getWord_target(), word.getWord_explain());
         }
     }
