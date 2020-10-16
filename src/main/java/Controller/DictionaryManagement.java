@@ -147,6 +147,7 @@ public class DictionaryManagement {
         dictionaryExportToFile();
     }
 
+    // Show words contain string key.
 //    public static ArrayList<String> dictionarySearcher(ArrayList<Word> list, String key){
 //        ArrayList<String> result = new ArrayList<>();
 //        String pattern = ".*" + key.toLowerCase() + ".*";
@@ -160,7 +161,7 @@ public class DictionaryManagement {
 //    }
 
     /**
-     * Show suggestion.
+     * Show words begin with string key. (linear search version).
      */
     public static ArrayList<String> dictionarySearcher(String key) throws IOException {
         ArrayList<String> result = new ArrayList<String>();
@@ -172,6 +173,36 @@ public class DictionaryManagement {
         }
         return result;
     }
+
+//    public static ArrayList<String> dictionarySearcher(String key) throws IOException {
+//        ArrayList<String> result = new ArrayList<String>();
+//        int left = 0;
+//        int right = Dictionary.dict.size();
+//        int mid;
+//        do {
+//            mid = (left + right) / 2;
+//            if(Dictionary.dict.get(mid).getWord_target().equals(key)){
+//                result.add(Dictionary.dict.get(mid).getWord_target());
+//                return result;
+//            }
+//            else if(Dictionary.dict.get(mid).getWord_target().compareTo(key)>0){
+//                left = mid + 1;
+//            }
+//            else right = mid -1;
+//
+//        }
+//        while (left <= right && !key.equals(""));
+//
+//        result.add("");
+//        return result;
+
+//        for (int i = 0; i < Dictionary.dict.size(); i++) {
+//            if (Dictionary.dict.get(i).getWord_target().indexOf(key) == 0) {
+//                result.add(Dictionary.dict.get(i).getWord_target());
+//            }
+//        }
+//        return result;
+//    }
 
     /**
      * Export data to file.

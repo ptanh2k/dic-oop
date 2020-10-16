@@ -20,7 +20,7 @@ public class Main extends Application {
         DictionaryManagement.insertFromFile();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainUI.fxml"));
         primaryStage.setTitle("Dictionary");
-        primaryStage.setScene(new Scene(root, 695, 440));
+        primaryStage.setScene(new Scene(root, 725, 440));
         primaryStage.show();
     }
 }
