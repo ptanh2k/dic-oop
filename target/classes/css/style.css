@@ -1,3 +1,7 @@
 AnchorPane {
     -fx-background-color: Cornflowerblue;
 }
+
+Button:hover {
+    -fx-background-color: lime;
+}

@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Panes.AddController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/css/style.css" fx:controller="Controller.Panes.AddController">
    <children>
       <Label layoutX="194.0" layoutY="125.0" prefHeight="18.0" prefWidth="42.0" text="Word" />
       <Label layoutX="194.0" layoutY="199.0" prefHeight="18.0" prefWidth="42.0" text="Explain" />
       <TextField fx:id="wordToAdd" layoutX="250.0" layoutY="121.0" promptText="Word to add..." />
       <TextField fx:id="wordAddedExplain" layoutX="250.0" layoutY="195.0" promptText="Explaination..." />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="205.0" layoutY="42.0" prefHeight="43.0" prefWidth="190.0" text="ADD WORD TO DICTIONARY" />
-      <Button layoutX="132.0" layoutY="265.0" mnemonicParsing="false" onAction="#addWord" prefHeight="35.0" prefWidth="76.0" text="Add" fx:id="addBtn" />
-      <Button layoutX="409.0" layoutY="261.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="76.0" text="Back" />
+      <Button layoutX="132.0" layoutY="265.0" mnemonicParsing="false" onAction="#addWord" prefHeight="35.0" prefWidth="76.0" stylesheets="@/css/style.css" text="Add" fx:id="addBtn" />
+      <Button layoutX="409.0" layoutY="261.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="76.0" stylesheets="@/css/style.css" text="Back" />
    </children>
 </AnchorPane>

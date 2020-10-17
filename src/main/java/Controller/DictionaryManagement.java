@@ -49,14 +49,6 @@ public class DictionaryManagement {
         }
     }
 
-
-//    public static void insertFromFile() throws IOException {
-//        ArrayList<Word> new_words = readFile();
-//        for (Word new_word : new_words) {
-//            dict.getDict().add(new_word);
-//        }
-//    }
-
     /**
      * Return index of word.
      *
@@ -147,19 +139,6 @@ public class DictionaryManagement {
         dictionaryExportToFile();
     }
 
-    // Show words contain string key.
-//    public static ArrayList<String> dictionarySearcher(ArrayList<Word> list, String key){
-//        ArrayList<String> result = new ArrayList<>();
-//        String pattern = ".*" + key.toLowerCase() + ".*";
-//        for (int i = 0; i < list.size(); i++) {
-//            Word word = list.get(i);
-//            if (word.getWord_target().toLowerCase().matches(pattern)) {
-//                result.add(word.getWord_target());
-//            }
-//        }
-//        return result;
-//    }
-
     /**
      * Show words begin with string key. (linear search version).
      */
@@ -174,6 +153,47 @@ public class DictionaryManagement {
         return result;
     }
 
+
+
+    /**
+     * Export data to file.
+     */
+    public static void dictionaryExportToFile() throws IOException {
+        FileWriter writer = new FileWriter("data/dictionaries.txt");
+        for (Word word : Dictionary.dict) {
+            writer.write(String.format("%s\t%s\n", word.getWord_target(), word.getWord_explain()));
+        }
+        writer.close();
+        System.out.println(Dictionary.dict);
+    }
+
+    /**
+     * Display dictionary.
+     */
+    public static void showDictionary() {
+        System.out.println("_____ TU DIEN ____");
+        for (Word word : Dictionary.dict) {
+            System.out.format("%s\t%s \n", word.getWord_target(), word.getWord_explain());
+        }
+    }
+}
+
+
+// Show words contain string key.
+//    public static ArrayList<String> dictionarySearcher(ArrayList<Word> list, String key){
+//        ArrayList<String> result = new ArrayList<>();
+//        String pattern = ".*" + key.toLowerCase() + ".*";
+//        for (int i = 0; i < list.size(); i++) {
+//            Word word = list.get(i);
+//            if (word.getWord_target().toLowerCase().matches(pattern)) {
+//                result.add(word.getWord_target());
+//            }
+//        }
+//        return result;
+//    }
+
+
+//Binary searcher.
 //    public static ArrayList<String> dictionarySearcher(String key) throws IOException {
 //        ArrayList<String> result = new ArrayList<String>();
 //        int left = 0;
@@ -203,27 +223,3 @@ public class DictionaryManagement {
 //        }
 //        return result;
 //    }
-
-    /**
-     * Export data to file.
-     */
-    public static void dictionaryExportToFile() throws IOException {
-        FileWriter writer = new FileWriter("data/dictionaries.txt");
-        for (Word word : Dictionary.dict) {
-            writer.write(String.format("%s\t%s\n", word.getWord_target(), word.getWord_explain()));
-        }
-        writer.close();
-        System.out.println(Dictionary.dict);
-    }
-
-    /**
-     * Display dictionary.
-     */
-    public static void showDictionary() {
-        System.out.println("_____ TU DIEN ____");
-        for (Word word : Dictionary.dict) {
-            System.out.format("%s\t%s \n", word.getWord_target(), word.getWord_explain());
-        }
-    }
-}
-

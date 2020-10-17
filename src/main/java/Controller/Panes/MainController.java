@@ -29,7 +29,6 @@ public class MainController {
     private ListView<String> Suggest = new ListView<String>();
 
     ObservableList<String> listTarget = FXCollections.observableArrayList();
-    ObservableList<String> listExplain = FXCollections.observableArrayList();
 
     @FXML
     public void handleSearch() {
@@ -113,11 +112,26 @@ public class MainController {
                 }
             }
             Suggest.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            Suggest.setOnMouseClicked(mouseEvent -> {
+                listTarget = Suggest.getSelectionModel().getSelectedItems();
+                for (String word : listTarget) {
+                    WordTarget.setText(word);
+                }
+            });
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
+
+//    public String displayForExplain(String key) {
+//        ArrayList<String> split = new ArrayList<String>();
+//        for (int i = 0; i < key.length(); i++) {
+//            split.get(0) = key.substring()
+//        }
+//    }
 }
+
+
 
 //    @FXML
 //    public void toggleSuggestion() throws IOException {

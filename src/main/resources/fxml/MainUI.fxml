@@ -20,16 +20,16 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Button alignment="BASELINE_LEFT" layoutX="490.0" layoutY="99.0" mnemonicParsing="false" onAction="#speak" prefHeight="26.0" prefWidth="73.0" text="Speak" />
-      <Button layoutX="586.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="26.0" prefWidth="127.0" text="Add word" />
+      <Button alignment="BASELINE_LEFT" layoutX="490.0" layoutY="99.0" mnemonicParsing="false" onAction="#speak" prefHeight="26.0" prefWidth="73.0" stylesheets="@/css/style.css" text="Speak" />
+      <Button layoutX="586.0" layoutY="99.0" mnemonicParsing="false" onAction="#handleAdd" prefHeight="26.0" prefWidth="127.0" stylesheets="@/css/style.css" text="Add word" />
       <Label layoutX="586.0" layoutY="80.0" prefHeight="18.0" prefWidth="62.0" text="Options">
          <font>
             <Font name="Arial" size="12.0" />
          </font>
       </Label>
-      <Button layoutX="586.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="26.0" prefWidth="127.0" text="Edit word" />
-      <Button layoutX="586.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleRemove" prefHeight="26.0" prefWidth="127.0" text="Remove word" />
-      <Button alignment="BASELINE_LEFT" layoutX="180.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="26.0" prefWidth="74.0" text="Search" />
+      <Button layoutX="586.0" layoutY="152.0" mnemonicParsing="false" onAction="#handleEdit" prefHeight="26.0" prefWidth="127.0" stylesheets="@/css/style.css" text="Edit word" />
+      <Button layoutX="586.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleRemove" prefHeight="26.0" prefWidth="127.0" stylesheets="@/css/style.css" text="Remove word" />
+      <Button alignment="BASELINE_LEFT" layoutX="180.0" layoutY="76.0" mnemonicParsing="false" onAction="#handleSearch" prefHeight="26.0" prefWidth="74.0" stylesheets="@/css/style.css" text="Search" />
       <ImageView fitHeight="26.0" fitWidth="34.0" layoutX="684.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../icon/add.jpg" />
