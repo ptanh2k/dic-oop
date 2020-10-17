@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Panes.AddController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/css/style.css" fx:controller="Controller.Panes.AddController">
    <children>
       <Label layoutX="194.0" layoutY="125.0" prefHeight="18.0" prefWidth="42.0" text="Word" />
       <Label layoutX="194.0" layoutY="199.0" prefHeight="18.0" prefWidth="42.0" text="Explain" />

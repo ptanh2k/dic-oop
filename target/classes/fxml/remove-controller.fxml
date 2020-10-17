@@ -6,11 +6,11 @@
 <?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="312.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Panes.RemoveController">
+<AnchorPane prefHeight="312.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/css/style.css" fx:controller="Controller.Panes.RemoveController">
     <children>
         <TextField fx:id="wordToRemove" layoutX="226.0" layoutY="121.0" promptText="Word to remove...">
          <tooltip>
-            <Tooltip fx:id="tooltip" text="Empty Tooltip" />
+            <Tooltip fx:id="tooltip" text="Type in word to remove" />
          </tooltip></TextField>
         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="196.0" layoutY="41.0" prefHeight="43.0" prefWidth="222.0" text="REMOVE WORD FROM DICTIONARY" />
         <Button fx:id="removeBtn" layoutX="120.0" layoutY="225.0" mnemonicParsing="false" onAction="#removeWord" prefHeight="35.0" prefWidth="76.0" stylesheets="@/css/style.css" text="Remove" />
