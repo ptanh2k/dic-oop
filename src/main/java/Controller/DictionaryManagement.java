@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Dictionary;
+import Model.Trie;
 import Model.Word;
 
 import java.io.*;
@@ -9,6 +10,8 @@ import java.util.Scanner;
 
 public class DictionaryManagement {
     private static Scanner sc = new Scanner(System.in);
+
+    private static Trie trie = new Trie();
 
     public DictionaryManagement() {
         //TODO
@@ -30,6 +33,7 @@ public class DictionaryManagement {
             String word_explain = sc.nextLine();
             Word word = new Word(word_target, word_explain);
             Dictionary.dict.add(word);
+            trie.insertWordToTrie(word);
         }
     }
 
@@ -45,6 +49,7 @@ public class DictionaryManagement {
             if (split.length == 2) {
                 Word word = new Word(split[0], split[1]);
                 Dictionary.dict.add(word);
+                trie.insertWordToTrie(word);
             }
         }
     }
@@ -82,10 +87,10 @@ public class DictionaryManagement {
     /**
      * Look up word.
      */
-    public static String lookup(String word_target) {
-        Word word = linearLookup(word_target);
-        return word.getWord_explain();
-    }
+//    public static String lookup(String word_target) {
+//        Word word = linearLookup(word_target);
+//        return word.getWord_explain();
+//    }
 
     /**
      * Look for word.
@@ -93,9 +98,13 @@ public class DictionaryManagement {
     public static void dictionaryLookup() {
         System.out.print("Nhap tu can tim: ");
         String word_target = sc.nextLine();
-        String result = lookup(word_target);
+//        String result = lookup(word_target);
+//        System.out.println(result);
+        String result = trie.lookup(word_target);
         System.out.println(result);
     }
+
+
 
     /**
      * Add word to dictionary.
@@ -184,38 +193,6 @@ public class DictionaryManagement {
 //            Word word = list.get(i);
 //            if (word.getWord_target().toLowerCase().matches(pattern)) {
 //                result.add(word.getWord_target());
-//            }
-//        }
-//        return result;
-//    }
-
-
-//Binary searcher.
-//    public static ArrayList<String> dictionarySearcher(String key) throws IOException {
-//        ArrayList<String> result = new ArrayList<String>();
-//        int left = 0;
-//        int right = Dictionary.dict.size();
-//        int mid;
-//        do {
-//            mid = (left + right) / 2;
-//            if(Dictionary.dict.get(mid).getWord_target().equals(key)){
-//                result.add(Dictionary.dict.get(mid).getWord_target());
-//                return result;
-//            }
-//            else if(Dictionary.dict.get(mid).getWord_target().compareTo(key)>0){
-//                left = mid + 1;
-//            }
-//            else right = mid -1;
-//
-//        }
-//        while (left <= right && !key.equals(""));
-//
-//        result.add("");
-//        return result;
-
-//        for (int i = 0; i < Dictionary.dict.size(); i++) {
-//            if (Dictionary.dict.get(i).getWord_target().indexOf(key) == 0) {
-//                result.add(Dictionary.dict.get(i).getWord_target());
 //            }
 //        }
 //        return result;

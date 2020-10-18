@@ -3,5 +3,9 @@ AnchorPane {
 }
 
 Button:hover {
-    -fx-background-color: lime;
+    -fx-background-color: skyblue;
+}
+
+Button:pressed {
+    -fx-background-color: aqua;
 }

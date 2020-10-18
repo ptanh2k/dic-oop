@@ -1,7 +1,7 @@
 package Model;
 
 public class Trie {
-    private final TrieNode root;
+    private TrieNode root ;
 
     public Trie() {
         root = new TrieNode();
@@ -52,28 +52,21 @@ public class Trie {
     }
 
     /**
-     * Look for word in trie.
-     */
-//    public Word trieLookup(String target) {
-//
-//        return
-//    }
-
-    /**
-     *
+     * Look for explanation in trie.
      */
     public String lookup(String search_target) {
+        String result = "";
         TrieNode current = root;
         for (int i = 0; i < search_target.length(); i++) {
             char ch = search_target.charAt(i);
             current = current.child.get(ch);
             if (current == null) {
-                return "";
+                return  "";
             }
         }
         if (current.is_complete_word) {
-            return current.value;
+            result = current.value;
         }
-        return "";
+        return result;
     }
 }
