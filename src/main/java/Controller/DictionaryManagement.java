@@ -144,7 +144,6 @@ public class DictionaryManagement {
      */
     public static ArrayList<String> dictionarySearcher(String key) throws IOException {
         ArrayList<String> result = new ArrayList<String>();
-
         for (int i = 0; i < Dictionary.dict.size(); i++) {
             if (Dictionary.dict.get(i).getWord_target().indexOf(key) == 0) {
                 result.add(Dictionary.dict.get(i).getWord_target());
@@ -152,8 +151,6 @@ public class DictionaryManagement {
         }
         return result;
     }
-
-
 
     /**
      * Export data to file.
