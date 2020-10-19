@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class DictionaryManagement {
     private static Scanner sc = new Scanner(System.in);
 
-    private static Trie trie = new Trie();
+    public static Trie trie = new Trie();
 
     public DictionaryManagement() {
         //TODO
@@ -85,7 +85,7 @@ public class DictionaryManagement {
     }
 
     /**
-     * Look up word.
+     * Look up word. (Linear search version)
      */
 //    public static String lookup(String word_target) {
 //        Word word = linearLookup(word_target);
@@ -102,6 +102,7 @@ public class DictionaryManagement {
 //        System.out.println(result);
         String result = trie.lookup(word_target);
         System.out.println(result);
+        System.out.println(trie.searchInTrie(word_target));
     }
 
 
@@ -112,6 +113,7 @@ public class DictionaryManagement {
     public static void addWord(String word_target, String word_explain) throws IOException {
         Word word = new Word(word_target, word_explain);
         Dictionary.dict.add(word);
+        trie.insertWordToTrie(word);
         dictionaryExportToFile();
     }
 
@@ -162,6 +164,16 @@ public class DictionaryManagement {
     }
 
     /**
+     * Show words begin with a string key. (Trie version).
+     */
+//    public static ArrayList<String> demoSearcher(String key) throws IOException {
+//        ArrayList<String> result = new ArrayList<String>();
+//        if (trie.searchInTrie(key)) {
+//
+//        }
+//    }
+
+    /**
      * Export data to file.
      */
     public static void dictionaryExportToFile() throws IOException {
@@ -197,3 +209,37 @@ public class DictionaryManagement {
 //        }
 //        return result;
 //    }
+
+/**
+ * Searcher (Binary search version).
+ */
+//    public static ArrayList<String> dictionarySearcher(String key) throws IOException {
+//        ArrayList<String> result = new ArrayList<String>();
+//        String word = "^" + key;
+//        Pattern pattern = Pattern.compile(word, Pattern.CASE_INSENSITIVE);
+//
+//        int left = 0;
+//        int right = Dictionary.dict.size();
+//        int mid;
+//        do {
+//            mid = (left + right) / 2;
+//            Matcher matcher = pattern.matcher(Dictionary.dict.get(mid).getWord_target());
+//
+//            if(matcher.lookingAt() == true){
+//                result.add(Dictionary.dict.get(mid).getWord_target());
+//                return result;
+//            }
+//            else if(Dictionary.dict.get(mid).getWord_target().compareTo(key) > 0){
+//                left = mid + 1;
+//
+//            }
+//            else{
+//                right = mid -1;
+//
+//            }
+//
+//        }
+//        while (left <= right && key.equals("") == false);
+//
+//        result.add("");
+//        return result;

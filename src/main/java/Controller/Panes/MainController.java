@@ -1,7 +1,6 @@
 package Controller.Panes;
 
 import Controller.DictionaryManagement;
-import Model.Trie;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainController {
-    private Trie trie = new Trie();
 
     @FXML
     private TextField WordTarget;
@@ -39,6 +37,7 @@ public class MainController {
     @FXML
     public void handleSearch() {
         try {
+            DictionaryManagement.insertFromFile();
             String word_target = WordTarget.getText().trim();
             DictionaryManagement.insertFromFile();
 //            if (DictionaryManagement.getIndexByWord(word_target) != -1) {
@@ -46,10 +45,10 @@ public class MainController {
 //            } else {
 //                WordExplain.setText("Word not found");
 //            }
-            if (trie.searchInTrie(word_target)) {
-                WordExplain.setText(trie.lookup(word_target));
+            if (DictionaryManagement.trie.searchInTrie(word_target)) {
+                WordExplain.setText(DictionaryManagement.trie.lookup(word_target));
             } else {
-                WordExplain.setText("WORD NOT FOUND!!!!");
+                WordExplain.setText("WORD NOT FOUND!!!");
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());

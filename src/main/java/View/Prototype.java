@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Test {
+public class Prototype {
 
     public static void main(String[] args) throws IOException {
         int choice = 0;

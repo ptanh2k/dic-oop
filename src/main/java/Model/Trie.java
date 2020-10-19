@@ -1,7 +1,7 @@
 package Model;
 
 public class Trie {
-    private TrieNode root ;
+    private TrieNode root;
 
     public Trie() {
         root = new TrieNode();
@@ -28,11 +28,11 @@ public class Trie {
     /**
      * Insert dictionary to trie.
      */
-    public void insertDataToTrie() {
-        for (Word word : Dictionary.dict) {
-            insertWordToTrie(word);
-        }
-    }
+//    public void insertDataToTrie() {
+//        for (Word word : Dictionary.dict) {
+//            insertWordToTrie(word);
+//        }
+//    }
 
     /**
      * See if target word is present in trie.
@@ -48,7 +48,7 @@ public class Trie {
             }
             current = node;
         }
-        return current.is_complete_word;
+        return !current.child.isEmpty() || current.is_complete_word;
     }
 
     /**
