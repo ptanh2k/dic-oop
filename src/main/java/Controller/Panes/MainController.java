@@ -36,24 +36,19 @@ public class MainController {
 
     @FXML
     public void handleSearch() {
-        try {
-            DictionaryManagement.insertFromFile();
-            String word_target = WordTarget.getText().trim();
-            DictionaryManagement.insertFromFile();
+        String word_target = WordTarget.getText().trim();
 //            if (DictionaryManagement.getIndexByWord(word_target) != -1) {
 //                WordExplain.setText(DictionaryManagement.lookup(word_target));
 //            } else {
 //                WordExplain.setText("Word not found");
 //            }
-            if (DictionaryManagement.trie.searchInTrie(word_target)) {
-                WordExplain.setText(DictionaryManagement.trie.lookup(word_target));
-            } else {
-                WordExplain.setText("WORD NOT FOUND!!!");
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        if (DictionaryManagement.trie.searchInTrie(word_target)) {
+            WordExplain.setText(DictionaryManagement.trie.lookup(word_target));
+        } else {
+            WordExplain.setText("WORD NOT FOUND!!!");
         }
     }
+
 
     @FXML
     public void handleAdd(ActionEvent event) {
