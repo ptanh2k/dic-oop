@@ -60,7 +60,7 @@ public class MainController {
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/add-controller.fxml"));
+            loader.setLocation(getClass().getResource("/fxml/AddUI.fxml"));
             Parent addWordGUI = loader.load();
             Scene scene = new Scene(addWordGUI);
             stage.setScene(scene);
@@ -71,15 +71,15 @@ public class MainController {
     }
 
     @FXML
-    public void handleEdit(ActionEvent event) {
+    public void handleEdit(ActionEvent event) throws IOException {
         try {
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/edit-controller.fxml"));
-            Parent editWordGUI = loader.load();
-            Scene scene = new Scene(editWordGUI);
-            stage.setScene(scene);
-            stage.show();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/fxml/EditUI.fxml"));
+        Parent editWordGUI = loader.load();
+        Scene scene = new Scene(editWordGUI);
+        stage.setScene(scene);
+        stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -90,17 +90,18 @@ public class MainController {
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/fxml/remove-controller.fxml"));
+            loader.setLocation(getClass().getResource("/fxml/RemoveUI.fxml"));
             Parent removeWordGUI = loader.load();
             Scene scene = new Scene(removeWordGUI);
             stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
     @FXML
-    public void speak(ActionEvent event) {
+    public void speak() {
         try {
             System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us" + ".cmu_us_kal.KevinVoiceDirectory");
 
@@ -119,8 +120,7 @@ public class MainController {
                 // Resume Synthesizer
                 synthesizer.resume();
 
-                // Speaks the given text
-                // until the queue is empty.
+                // Speaks the given text until the queue is empty.
                 synthesizer.speakPlainText(WordTarget.getText(), null);
                 synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
             }
@@ -158,27 +158,13 @@ public class MainController {
             System.out.println(e.getMessage());
         }
     }
+}
 
 //    public String displayForExplain(String key) {
 //        ArrayList<String> split = new ArrayList<String>();
 //        for (int i = 0; i < key.length(); i++) {
 //            split.get(0) = key.substring()
 //        }
-//    }
-}
-
-
-
-//    @FXML
-//    public void toggleSuggestion() throws IOException {
-//        entries.clear();
-//        WordTarget.textProperty().addListener(
-//                (observable, oldVal, newVal) -> handleSearchByKey(oldVal, newVal));
-//        Suggest.setMaxHeight(372);
-//        for (Word word : dictionary.getDict()) {
-//            entries.add(word.getWord_target());
-//        }
-//        Suggest.setItems(entries);
 //    }
 
 //

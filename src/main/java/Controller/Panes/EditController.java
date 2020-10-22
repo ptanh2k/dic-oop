@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -26,10 +25,6 @@ public class EditController {
 
     @FXML
     private TextField explain;
-
-    public EditController(TextField wordToEdit) {
-        this.wordToEdit = wordToEdit;
-    }
 
     @FXML
     public void editWord() throws IOException {

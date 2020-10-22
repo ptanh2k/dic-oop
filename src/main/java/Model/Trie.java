@@ -1,10 +1,18 @@
 package Model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Trie {
     private TrieNode root;
+    ArrayList<String> words;
+    TrieNode prefix_root;
+    String cur_prefix;
 
     public Trie() {
         root = new TrieNode();
+        words = new ArrayList<String>();
     }
 
     /**
@@ -26,15 +34,6 @@ public class Trie {
     }
 
     /**
-     * Insert dictionary to trie.
-     */
-//    public void insertDataToTrie() {
-//        for (Word word : Dictionary.dict) {
-//            insertWordToTrie(word);
-//        }
-//    }
-
-    /**
      * See if target word is present in trie.
      */
     public boolean searchInTrie(String search_target) {
@@ -50,6 +49,28 @@ public class Trie {
         }
         return !current.child.isEmpty() || current.is_complete_word;
     }
+
+//    public TrieNode searchNode(String key) {
+//        Map<Character, TrieNode> child = root.child;
+//        TrieNode current = root;
+//        for (int i = 0; i < key.length(); i++) {
+//            char ch = key.charAt(i);
+//            TrieNode node = child.get(ch);
+//
+//            if (node == null) {
+//                return null;
+//            }
+//
+//            current = node;
+//            child = current.child;
+//        }
+//        prefix_root = current;
+//        cur_prefix = key;
+//        words.clear();
+//        return current;
+//    }
+
+
 
     /**
      * Look for explanation in trie.

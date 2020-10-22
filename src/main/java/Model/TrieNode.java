@@ -6,6 +6,7 @@ import java.util.Map;
 public class TrieNode {
 
     protected Map<Character, TrieNode> child;
+    protected TrieNode parent;
     protected boolean is_complete_word;
     protected String value;                     //Meaning of the word.
 
