@@ -1,6 +1,7 @@
 package Controller.Panes;
 
 import Controller.DictionaryManagement;
+import View.GoogleAPI;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
@@ -30,22 +32,29 @@ public class MainController {
     private TextField WordExplain;
 
     @FXML
+    private CheckBox checkBox;
+
+    @FXML
     private ListView<String> Suggest = new ListView<String>();
 
     ObservableList<String> listTarget = FXCollections.observableArrayList();
 
     @FXML
-    public void handleSearch() {
+    public void handleSearch() throws IOException {
         String word_target = WordTarget.getText().trim();
 //            if (DictionaryManagement.getIndexByWord(word_target) != -1) {
 //                WordExplain.setText(DictionaryManagement.lookup(word_target));
 //            } else {
 //                WordExplain.setText("Word not found");
 //            }
-        if (DictionaryManagement.trie.searchInTrie(word_target)) {
-            WordExplain.setText(DictionaryManagement.trie.lookup(word_target));
+        if (checkBox.isSelected()) {
+            WordExplain.setText(GoogleAPI.translate(word_target));
         } else {
-            WordExplain.setText("WORD NOT FOUND!!!");
+            if (DictionaryManagement.trie.searchInTrie(word_target)) {
+                WordExplain.setText(DictionaryManagement.trie.lookup(word_target));
+            } else {
+                WordExplain.setText("WORD NOT FOUND!!!");
+            }
         }
     }
 

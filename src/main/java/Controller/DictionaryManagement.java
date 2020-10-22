@@ -105,8 +105,6 @@ public class DictionaryManagement {
         System.out.println(trie.searchInTrie(word_target));
     }
 
-
-
     /**
      * Add word to dictionary.
      */
@@ -162,16 +160,6 @@ public class DictionaryManagement {
         }
         return result;
     }
-
-    /**
-     * Show words begin with a string key. (Trie version).
-     */
-//    public static ArrayList<String> demoSearcher(String key) throws IOException {
-//        ArrayList<String> result = new ArrayList<String>();
-//        if (trie.searchInTrie(key)) {
-//
-//        }
-//    }
 
     /**
      * Export data to file.

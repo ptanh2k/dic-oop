@@ -32,7 +32,8 @@ public class AddController {
             String word_to_added = wordToAdd.getText().trim();
             String word_added_explain = wordAddedExplain.getText().trim();
             DictionaryManagement.addWord(word_to_added, word_added_explain);
-//            DictionaryManagement.dictionaryExportToFile();
+            wordToAdd.clear();
+            wordAddedExplain.clear();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

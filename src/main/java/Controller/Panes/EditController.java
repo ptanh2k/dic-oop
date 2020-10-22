@@ -37,7 +37,7 @@ public class EditController {
             Dictionary.dict.get(DictionaryManagement.getIndexByWord(to_edit)).setWord_explain(new_explain);
             DictionaryManagement.dictionaryExportToFile();
         } else {
-            explain.setText("Word not found");
+            explain.setText("WORD NOT FOUND!!!");
         }
     }
 
