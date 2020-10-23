@@ -26,39 +26,45 @@ import java.util.ArrayList;
 public class MainController {
 
     @FXML
-    private TextField WordTarget;
+    private TextField wordTarget;
 
     @FXML
-    private TextField WordExplain;
+    private TextField wordExplain;
 
     @FXML
     private CheckBox checkBox;
 
     @FXML
-    private ListView<String> Suggest = new ListView<String>();
+    private ListView<String> suggest = new ListView<String>();
 
     ObservableList<String> listTarget = FXCollections.observableArrayList();
 
+    /**
+     * Handle searching activity.
+     */
     @FXML
     public void handleSearch() throws IOException {
-        String word_target = WordTarget.getText().trim();
+        String word_target = wordTarget.getText().trim();
 //            if (DictionaryManagement.getIndexByWord(word_target) != -1) {
 //                WordExplain.setText(DictionaryManagement.lookup(word_target));
 //            } else {
 //                WordExplain.setText("Word not found");
 //            }
         if (checkBox.isSelected()) {
-            WordExplain.setText(GoogleAPI.translate(word_target));
+            wordExplain.setText(GoogleAPI.translate(word_target));
         } else {
             if (DictionaryManagement.trie.searchInTrie(word_target)) {
-                WordExplain.setText(DictionaryManagement.trie.lookup(word_target));
+                wordExplain.setText(DictionaryManagement.trie.lookup(word_target));
             } else {
-                WordExplain.setText("WORD NOT FOUND!!!");
+                wordExplain.setText("WORD NOT FOUND!!!");
             }
         }
     }
 
 
+    /**
+     * Switch to Add word UI.
+     */
     @FXML
     public void handleAdd(ActionEvent event) {
         try {
@@ -74,6 +80,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Switch to Edit word UI.
+     */
     @FXML
     public void handleEdit(ActionEvent event) throws IOException {
         try {
@@ -89,6 +98,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Switch to Remove word UI.
+     */
     @FXML
     public void handleRemove(ActionEvent event) {
         try {
@@ -104,6 +116,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Pronounce word.
+     */
     @FXML
     public void speak() {
         try {
@@ -113,7 +128,7 @@ public class MainController {
             Central.registerEngineCentral("com.sun.speech.freetts" + ".jsapi.FreeTTSEngineCentral");
 
             // Create a Synthesizer
-            if (WordTarget.getText() != null) {
+            if (wordTarget.getText() != null) {
                 Synthesizer synthesizer
                         = Central.createSynthesizer(
                         new SynthesizerModeDesc(Locale.US));
@@ -125,7 +140,7 @@ public class MainController {
                 synthesizer.resume();
 
                 // Speaks the given text until the queue is empty.
-                synthesizer.speakPlainText(WordTarget.getText(), null);
+                synthesizer.speakPlainText(wordTarget.getText(), null);
                 synthesizer.waitEngineState(Synthesizer.QUEUE_EMPTY);
             }
         } catch (Exception e) {
@@ -134,28 +149,31 @@ public class MainController {
 
     }
 
+    /**
+     * Show words suggestion.
+     */
     @FXML
     public void toggleSuggestion() {
         try {
-            if (Suggest.getItems().size() != 0) {
-                Suggest.getItems().clear();
+            if (suggest.getItems().size() != 0) {
+                suggest.getItems().clear();
             }
 
-            String input = WordTarget.getText().trim();
+            String input = wordTarget.getText().trim();
             ArrayList<String> searcher = DictionaryManagement.dictionarySearcher(input);
 
             if (searcher.size() == 0) {
-                WordExplain.setText("WORD NOT FOUND!");
+                wordExplain.setText("WORD NOT FOUND!");
             } else {
                 for (String target : searcher) {
-                    Suggest.getItems().add(target);
+                    suggest.getItems().add(target);
                 }
             }
-            Suggest.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-            Suggest.setOnMouseClicked(mouseEvent -> {
-                listTarget = Suggest.getSelectionModel().getSelectedItems();
+            suggest.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+            suggest.setOnMouseClicked(mouseEvent -> {
+                listTarget = suggest.getSelectionModel().getSelectedItems();
                 for (String word : listTarget) {
-                    WordTarget.setText(word);
+                    wordTarget.setText(word);
                 }
             });
         } catch (IOException e) {

@@ -7,6 +7,8 @@ import Model.Word;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DictionaryManagement {
     private static Scanner sc = new Scanner(System.in);
@@ -182,8 +184,6 @@ public class DictionaryManagement {
             System.out.format("%s\t%s \n", word.getWord_target(), word.getWord_explain());
         }
     }
-}
-
 
 // Show words contain string key.
 //    public static ArrayList<String> dictionarySearcher(ArrayList<Word> list, String key){
@@ -198,9 +198,9 @@ public class DictionaryManagement {
 //        return result;
 //    }
 
-/**
- * Searcher (Binary search version).
- */
+    /**
+     * Searcher (Binary search version).
+     */
 //    public static ArrayList<String> dictionarySearcher(String key) throws IOException {
 //        ArrayList<String> result = new ArrayList<String>();
 //        String word = "^" + key;
@@ -213,21 +213,20 @@ public class DictionaryManagement {
 //            mid = (left + right) / 2;
 //            Matcher matcher = pattern.matcher(Dictionary.dict.get(mid).getWord_target());
 //
-//            if(matcher.lookingAt() == true){
+//            if (matcher.lookingAt()) {
 //                result.add(Dictionary.dict.get(mid).getWord_target());
 //                return result;
-//            }
-//            else if(Dictionary.dict.get(mid).getWord_target().compareTo(key) > 0){
+//            } else if (Dictionary.dict.get(mid).getWord_target().compareTo(key) > 0) {
 //                left = mid + 1;
 //
-//            }
-//            else{
-//                right = mid -1;
+//            } else {
+//                right = mid - 1;
 //
 //            }
-//
 //        }
-//        while (left <= right && key.equals("") == false);
+//        while (left <= right && !key.equals(""));
 //
 //        result.add("");
 //        return result;
+//    }
+}

@@ -26,6 +26,9 @@ public class EditController {
     @FXML
     private TextField explain;
 
+    /**
+     * Edit word in dictionary.
+     */
     @FXML
     public void editWord() throws IOException {
         String to_edit = wordToEdit.getText().trim();
@@ -41,6 +44,9 @@ public class EditController {
         }
     }
 
+    /**
+     * Back to main.
+     */
     @FXML
     public void back(ActionEvent event) {
         try {

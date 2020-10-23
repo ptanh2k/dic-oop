@@ -20,8 +20,11 @@ public class RemoveController {
     private TextField wordToRemove;
 
     @FXML
-    private Tooltip tooltip = new Tooltip("Word not found");
+    private final Tooltip tooltip = new Tooltip("Word not found");
 
+    /**
+     * Remove word in dictionary.
+     */
     @FXML
     public void removeWord() throws IOException {
         Dictionary dict = new Dictionary();
@@ -37,6 +40,9 @@ public class RemoveController {
         DictionaryManagement.dictionaryExportToFile();
     }
 
+    /**
+     * Back to main.
+     */
     @FXML
     public void back(ActionEvent event) {
         try {

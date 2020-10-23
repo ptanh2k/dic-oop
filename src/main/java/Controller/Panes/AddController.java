@@ -26,6 +26,9 @@ public class AddController {
     @FXML
     private TextField wordAddedExplain;
 
+    /**
+     * Add word to existing dictionary.
+     */
     @FXML
     public void addWord() {
         try {
@@ -39,6 +42,9 @@ public class AddController {
         }
     }
 
+    /**
+     * Back to Main.
+     */
     @FXML
     public void back(ActionEvent event) {
         try {

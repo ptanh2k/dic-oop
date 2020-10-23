@@ -13,7 +13,5 @@ public class DictionaryCommandline {
             System.out.format("|%s  |%s \n", Dictionary.dict.get(i).getWord_target(), Dictionary.dict.get(i).getWord_explain());
         }
     }
-
-
 }
 

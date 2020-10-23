@@ -12,14 +12,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="666.0" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Panes.MainController">
    <children>
-      <Label alignment="CENTER" layoutX="222.0" layoutY="22.0" prefHeight="32.0" prefWidth="286.0" text="AWFUL DICTIONARY">
+      <Label alignment="CENTER" layoutX="222.0" layoutY="22.0" prefHeight="32.0" prefWidth="286.0" text="EN - VI DICTIONARY">
          <font>
             <Font name="Arial Bold Italic" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="WordTarget" layoutX="17.0" layoutY="74.0" onAction="#handleSearch" onKeyPressed="#toggleSuggestion" prefHeight="26.0" prefWidth="162.0" promptText="Word to search..." />
-      <ListView fx:id="Suggest" layoutX="17.0" layoutY="100.0" prefHeight="316.0" prefWidth="162.0" />
-      <TextField fx:id="WordExplain" alignment="TOP_LEFT" layoutX="294.0" layoutY="100.0" prefHeight="316.0" prefWidth="195.0" />
+      <TextField fx:id="wordTarget" layoutX="17.0" layoutY="74.0" onAction="#handleSearch" onKeyPressed="#toggleSuggestion" prefHeight="26.0" prefWidth="162.0" promptText="Word to search..." />
+      <ListView fx:id="suggest" layoutX="17.0" layoutY="100.0" prefHeight="316.0" prefWidth="162.0" />
+      <TextField fx:id="wordExplain" alignment="TOP_LEFT" layoutX="294.0" layoutY="100.0" prefHeight="316.0" prefWidth="195.0" />
       <Label alignment="CENTER" layoutX="294.0" layoutY="78.0" prefHeight="22.0" prefWidth="86.0" style="-fx-background-color: whitesmoke" text="Definition">
          <font>
             <Font name="System Bold" size="12.0" />
