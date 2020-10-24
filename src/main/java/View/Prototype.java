@@ -26,6 +26,7 @@ public class Prototype {
             System.out.println("4. Sửa từ ");
             System.out.println("5. Show dữ liệu tử điển");
             System.out.println("6. Các gợi ý từ: ");
+            System.out.println("7. Các từ tương tự: ");
             System.out.println("0. Thoát ");
 
             choice = scanner.nextInt();
@@ -60,6 +61,12 @@ public class Prototype {
                         System.out.println(result.get(i));
                     }
                     break;
+//                case 7:
+//                    String word = scanner.nextLine();
+//                    ArrayList<String> similar = DictionaryManagement.similarWords(word);
+//                    for (int i = 0; i < similar.size(); i++) {
+//                        System.out.println(similar.get(i));
+//                    }
             }
         } while (choice != 0);
     }

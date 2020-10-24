@@ -185,6 +185,21 @@ public class DictionaryManagement {
         }
     }
 
+    /**
+     * Show words with similar keyword.
+     */
+//    public static ArrayList<String> similarWords(String key) {
+//        ArrayList<String> result = new ArrayList<String>();
+//        if (!Dictionary.dict.contains(key)) {
+//            for (Word word : Dictionary.dict) {
+//                if (word.getWord_target().compareTo(key) >= 3) {
+//                    result.add(word.getWord_target());
+//                }
+//            }
+//        }
+//        return result;
+//    }
+
 // Show words contain string key.
 //    public static ArrayList<String> dictionarySearcher(ArrayList<Word> list, String key){
 //        ArrayList<String> result = new ArrayList<>();
